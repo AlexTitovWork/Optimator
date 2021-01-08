@@ -1,2 +1,2 @@
-# optimator
+# Optimator
 Play with optimization algorithms
