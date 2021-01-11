@@ -60,6 +60,7 @@ def grad(X, Y, extra=[]):
     return np.array([dx, dy])
 
 # ################################################################################
+# gradient start
 X, Y, Z = plot_function()
 rand = np.random.RandomState(23)
 XY_init = rand.uniform(0, 5, 2)
@@ -70,7 +71,6 @@ w_history, f_history = gradient_descent(5, -1, XY_init, f, grad, [], learning_ra
 print(w_history)
 print(f_history)
 # ################################################################################
-
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -84,7 +84,6 @@ ax.set_zlabel('Z Label')
 # plt.plot(w_history[:, 0], w_history[:, 1],f_history, 'ro')
 ## coloring couttour line
 fig.show()
-
 
 fig, ax = plt.subplots()
 # CS = ax.contour(X, Y, Z)
