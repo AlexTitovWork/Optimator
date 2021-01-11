@@ -94,7 +94,7 @@ CS = plt.contour(X, Y, Z, levels=lev)
 # manual_locations = [(-1, -1.4), (-0.62, -0.7), (-2, 0.5), (1.7, 1.2), (2.0, 1.4), (2.4, 1.7)]
 # ax.clabel(CS, inline=1, fontsize=10, manual=manual_locations)
 ax.clabel(CS, inline=1, fontsize=8)
-ax.set_title('Simplest default with labels')
+ax.set_title('Himmelblau\'s function')
 ax.plot(w_history[:, 0], w_history[:, 1],  'b*-')
 fig.set_figwidth(12)    #  ширина и
 fig.set_figheight(6)    #  высота "Figure"
