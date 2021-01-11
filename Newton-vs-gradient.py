@@ -47,7 +47,8 @@ def plot_function():
 
 
 
-#  function
+# Himmelblau's function is a multi-modal function, used to test the performance of optimization algorithms. The function is defined by:
+# https://en.wikipedia.org/wiki/Himmelblau%27s_function
 def f(X, Y, extra=[]):
     return (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2
 
