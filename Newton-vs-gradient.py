@@ -44,9 +44,6 @@ def plot_function():
                            linewidth=0, antialiased=False)
     return X, Y, Z
 
-
-
-
 # Himmelblau's function is a multi-modal function, used to test the performance of optimization algorithms. The function is defined by:
 # https://en.wikipedia.org/wiki/Himmelblau%27s_function
 def f(X, Y, extra=[]):
@@ -54,19 +51,21 @@ def f(X, Y, extra=[]):
 
 
 # Function to compute the gradient
+# Gradient Himmelblau's function
 def grad(X, Y, extra=[]):
     dx = 4 * X * (X ** 2 + Y - 11) + 2 * (X + Y ** 2 - 7)
     dy = (2 * (X ** 2 + Y - 11) + 4 * Y * (X + Y ** 2 - 7))
     return np.array([dx, dy])
 
 # ################################################################################
-# gradient start
+# gradient descent
 X, Y, Z = plot_function()
 rand = np.random.RandomState(23)
-XY_init = rand.uniform(0, 5, 2)
+XY_init = rand.uniform(0, 1, 2)
 learning_rates = [0.05, 0.2, 0.5, 0.8]
-
-w_history, f_history = gradient_descent(5, -1, XY_init, f, grad, [], learning_rate=0.02, momentum=0.8)
+max_iter = 100
+threshold = 0.1
+w_history, f_history = gradient_descent(max_iter, threshold, XY_init, f, grad, [], learning_rate=0.001, momentum=0.8)
 
 print(w_history)
 print(f_history)
