@@ -127,7 +127,9 @@ def second_grad(X, Y, extra=[]):
 X, Y, Z = plot_function()
 rand = np.random.RandomState(23)
 # XY_init = rand.uniform(-2, -3, 2)
-XY_init = rand.uniform(-2, -3, 2)
+# XY_init = np.array([3.5, -2])
+XY_init = np.array([2.5, -2])
+
 learning_rates = [0.05, 0.2, 0.5, 0.8]
 max_iter = 500
 threshold = 0.1
@@ -166,10 +168,11 @@ ax.clabel(CS, inline=1, fontsize=8)
 ax.set_title('Himmelblau\'s function')
 ax.plot(w_history[:, 0], w_history[:, 1],  'b*-')
 ax.plot(w_history_N[:, 0], w_history_N[:, 1],  'g+-')
-
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
 fig.set_figwidth(12)    #  ширина и
 fig.set_figheight(6)    #  высота "Figure"
 show()
-fig.savefig('images//Figure_3.png')
+fig.savefig('images//Figure_4.png')
 
 print("Plotting complete")
