@@ -1,5 +1,6 @@
 # Optimator
 Play with optimization algorithms.
+###Cauchy (Gradient) method  vs Newton's method
 <br>About code.
 <br>In this code researched Gradient or Cauchy method - first order method vs Newton's method -  second order method
 <br>The code illustrates the advantages of the second order method over the first order method.
