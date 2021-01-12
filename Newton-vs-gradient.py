@@ -98,4 +98,6 @@ ax.plot(w_history[:, 0], w_history[:, 1],  'b*-')
 fig.set_figwidth(12)    #  ширина и
 fig.set_figheight(6)    #  высота "Figure"
 show()
+fig.savefig('images//Figure_3.png')
+
 print("Plotting complete")
