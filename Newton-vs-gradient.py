@@ -76,12 +76,18 @@ def Newtons_descent(max_iterations, threshold, XY_init,
 
 
 # ################################################################################
-def plot_function():
+def plot_function(noised=False):
     # Make data.
     X = np.arange(-5, 5, 0.25)
     Y = np.arange(-5, 5, 0.25)
     X, Y = np.meshgrid(X, Y)
     Z = (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2
+    # Gaussian distribution
+    if noised:
+        mu, sigma = 0, 10  # mean and standard deviation
+        noise = np.random.normal(mu, sigma, Z.shape)
+        # Noised surface
+        Z = np.add(Z, noise)
 
     # Plot the surface.
     fig = plt.figure()
@@ -97,7 +103,11 @@ def plot_function():
 # Himmelblau's function is a multi-modal function, used to test the performance of optimization algorithms. The function is defined by:
 # https://en.wikipedia.org/wiki/Himmelblau%27s_function
 def f(X, Y, extra=[]):
-    return (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2
+
+    mu, sigma = 0, 10  # mean and standard deviation
+    noise = np.random.normal(mu, sigma, 1)
+    Zloc = (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2 + noise
+    return Zloc
 
 
 # Function to compute the gradient
@@ -127,11 +137,11 @@ def second_grad(X, Y, extra=[]):
 
 # ################################################################################
 # gradient descent
-X, Y, Z = plot_function()
+X, Y, Z = plot_function(noised=True)
 rand = np.random.RandomState(23)
 # XY_init = rand.uniform(-2, -3, 2)
 # XY_init = np.array([3.5, -2])
-XY_init = np.array([2.5, -2])
+XY_init = np.array([0, 0])
 
 learning_rates = [0.05, 0.2, 0.5, 0.8]
 max_iter = 500
