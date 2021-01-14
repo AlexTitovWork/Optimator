@@ -17,6 +17,7 @@ from matplotlib.pyplot import plot, ion, show
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
+mu, sigma = 0, 5  # mean and standard deviation
 
 # ################################################################################
 # Gradient or Cauchy method
@@ -60,9 +61,13 @@ def Newtons_descent(max_iterations, threshold, XY_init,
     while i < max_iterations and diff > threshold:
         print(grad_func(w[0], w[1], extra_param))
         print(np.linalg.inv(second_grad(w[0], w[1], extra_param)))
-
+        # Inverse Hessian matrix of second derivatives.
         inverseHessian = np.linalg.inv(second_grad(w[0], w[1], extra_param))
-        delta_w = -learning_rate * np.dot(grad_func(w[0], w[1], extra_param),inverseHessian)
+        # Hessian step calculation, it is not define descent direction.
+        # The Hessian matrix characterizes the convexity or concavity of a
+        # surface and can change the sign of the determinant at the inflection point.
+        inverseHessian = np.abs(inverseHessian)
+        delta_w = - learning_rate * np.dot(grad_func(w[0], w[1], extra_param), inverseHessian)
         # delta_w = - np.dot(grad_func(w[0], w[1], extra_param),inverseHessian)
 
         w = w + delta_w
@@ -84,7 +89,8 @@ def plot_function(noised=False):
     Z = (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2
     # Gaussian distribution
     if noised:
-        mu, sigma = 0, 10  # mean and standard deviation
+        # Moved to the global parameters
+        # mu, sigma = 0, 10  # mean and standard deviation
         noise = np.random.normal(mu, sigma, Z.shape)
         # Noised surface
         Z = np.add(Z, noise)
@@ -103,8 +109,8 @@ def plot_function(noised=False):
 # Himmelblau's function is a multi-modal function, used to test the performance of optimization algorithms. The function is defined by:
 # https://en.wikipedia.org/wiki/Himmelblau%27s_function
 def f(X, Y, extra=[]):
-
-    mu, sigma = 0, 10  # mean and standard deviation
+    # Moved to the global parameters
+    # mu, sigma = 0, 10  # mean and standard deviation
     noise = np.random.normal(mu, sigma, 1)
     Zloc = (X ** 2 + Y - 11) ** 2 + (X + Y ** 2 - 7) ** 2 + noise
     return Zloc
@@ -139,9 +145,9 @@ def second_grad(X, Y, extra=[]):
 # gradient descent
 X, Y, Z = plot_function(noised=True)
 rand = np.random.RandomState(23)
-# XY_init = rand.uniform(-2, -3, 2)
+XY_init = rand.uniform(-2, 2, 2)
 # XY_init = np.array([3.5, -2])
-XY_init = np.array([0, 0])
+# XY_init = np.array([-2, -1.9])
 
 learning_rates = [0.05, 0.2, 0.5, 0.8]
 max_iter = 500
