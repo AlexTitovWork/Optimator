@@ -17,7 +17,7 @@ from matplotlib.pyplot import plot, ion, show
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
-mu, sigma = 0, 5  # mean and standard deviation
+mu, sigma = 0, 2  # mean and standard deviation
 
 # ################################################################################
 # Gradient or Cauchy method
@@ -145,7 +145,7 @@ def second_grad(X, Y, extra=[]):
 # gradient descent
 X, Y, Z = plot_function(noised=True)
 rand = np.random.RandomState(23)
-XY_init = rand.uniform(-2, 2, 2)
+XY_init = rand.uniform(-0.5, 0.5, 2)
 # XY_init = np.array([3.5, -2])
 # XY_init = np.array([-2, -1.9])
 
