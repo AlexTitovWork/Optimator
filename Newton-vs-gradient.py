@@ -88,6 +88,9 @@ def plot_function():
     ax = fig.gca(projection='3d')
     surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm,
                            linewidth=0, antialiased=False)
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    ax.set_zlabel('Z Label')
     return X, Y, Z
 
 # ################################################################################
