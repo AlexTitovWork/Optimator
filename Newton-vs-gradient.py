@@ -17,7 +17,8 @@ from matplotlib.pyplot import plot, ion, show
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
-mu, sigma = 0, 0.5  # mean and standard deviation
+mu, sigma = 0, 5  # mean and standard deviation
+mu_grad, sigma_grad = 0, 5  # mean and standard deviation of first derivatives
 
 # ################################################################################
 # Gradient descent or Cauchy method
@@ -134,10 +135,17 @@ def f(X, Y, extra=[]):
 
 # Function to compute the gradient
 # Gradient Himmelblau's function
+# add noise to Gradient
 def grad(X, Y, extra=[]):
+    # Noise
+    noise_grad_x = np.random.normal(mu_grad, sigma_grad, 1)
+    noise_grad_y = np.random.normal(mu_grad, sigma_grad, 1)
+    # Pure gradient
     dx = 4 * X * (X ** 2 + Y - 11) + 2 * (X + Y ** 2 - 7)
     dy = (2 * (X ** 2 + Y - 11) + 4 * Y * (X + Y ** 2 - 7))
-    return np.array([dx, dy])
+    out = np.array([dx + noise_grad_x[0], dy + noise_grad_y[0]])
+    # out.reshape(2,1)
+    return out
 
 # Function to compute the gradient
 # Gradient Himmelblau's function
@@ -176,7 +184,7 @@ print("Grad")
 print(w_history)
 print(f_history)
 # Newton descent
-w_history_N, f_history_N, eps_history_N, eps_history_xy_N = Newtons_method(max_iter, threshold, XY_init, f, grad, second_grad,  learning_rate=0.5)
+w_history_N, f_history_N, eps_history_N, eps_history_xy_N = Newtons_method(max_iter, threshold, XY_init, f, grad, second_grad,  learning_rate=0.6)
 print("Newton")
 print(w_history_N)
 print(f_history_N)
