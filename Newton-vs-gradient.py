@@ -17,8 +17,10 @@ from matplotlib.pyplot import plot, ion, show
 import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
-mu, sigma = 0, 5  # mean and standard deviation
-mu_grad, sigma_grad = 0, 5  # mean and standard deviation of first derivatives
+# mean and standard deviation for function noise
+mu, sigma = 0, 2
+# mean and standard deviation of first derivatives of gradient
+mu_grad, sigma_grad = 0, 1
 
 # ################################################################################
 # Gradient descent or Cauchy method
@@ -173,18 +175,18 @@ rand = np.random.RandomState(23)
 # XY_init = rand.uniform(-0.5, 0.5, 2)
 # XY_init = np.array([3.5, -2])
 # XY_init = np.array([-2, -1.9])
-XY_init = np.array([0.03, 1.9])
+XY_init = np.array([0.5, 0.8])
 
 learning_rates = [0.05, 0.2, 0.5, 0.8]
 max_iter = 500
 threshold = 0.0001
 # Gradient descent
-w_history, f_history, eps_history, eps_history_xy_G = gradient_descent(max_iter, threshold, XY_init, f, grad,  learning_rate=0.001)
+w_history, f_history, eps_history, eps_history_xy_G = gradient_descent(max_iter, threshold, XY_init, f, grad,  learning_rate=0.005)
 print("Grad")
 print(w_history)
 print(f_history)
 # Newton descent
-w_history_N, f_history_N, eps_history_N, eps_history_xy_N = Newtons_method(max_iter, threshold, XY_init, f, grad, second_grad,  learning_rate=0.6)
+w_history_N, f_history_N, eps_history_N, eps_history_xy_N = Newtons_method(max_iter, threshold, XY_init, f, grad, second_grad,  learning_rate=0.5)
 print("Newton")
 print(w_history_N)
 print(f_history_N)
@@ -250,7 +252,7 @@ plt.ylabel('$\epsilon$')
 # plt.title('$\epsilon$, Newton')
 plt.grid(True)
 plt.axis([0, 300, 0, 100])
-plt.legend(loc='bottom right')
+plt.legend(loc='right')
 
 # plt.set_xlabel('X Label')
 # plt.set_ylabel('Y Label')
@@ -270,7 +272,7 @@ plt.ylabel('Gradient desc. args, $[x,y]$')
 # plt.title('Conv. to optimal argument,  Gradient')
 plt.grid(True)
 plt.axis([0, 300, 0, 4])
-plt.legend(loc='bottom right')
+plt.legend(loc='right')
 
 
 plt.subplot(414)
